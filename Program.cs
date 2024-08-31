@@ -1,40 +1,43 @@
-﻿using System;
-using System.Runtime.InteropServices.Marshalling;
+﻿// Online C# Editor for free
+// Write, Edit and Run your C# code using C# Online Compiler
+
+using System;
 
 public class HelloWorld
 {
-    public static void Main(string[] args)
+    static void Main(string[] args)
     {
-        Console.Write("Enter your result :");
-         int result=int.Parse(Console.ReadLine());
-         if(result>=80)
-         {
-            Console.WriteLine("A+");
-         }
-         else if(result>=70)
-         {
-         Console.WriteLine("A-");
-         }
-         else if(result>=60)
-         {
-            Console.WriteLine("B");
-         }
-         else if(result>=50)
-         {
-            Console.WriteLine("B-");
-         }
-         else if(result>=40)
+        Random random = new Random();
+        int numberToGuess = random.Next(1, 101); 
+        int userGuess = 0;
+        int attempts = 0;
+        Console.WriteLine("Welcome to the Guess the Number game!");
+        Console.WriteLine("I'm thinking of a number between 1 and 100. Can you guess what it is?");
+        while (userGuess != numberToGuess)
         {
-            Console.WriteLine("C");
-        }
-         else if(result>=33)
-         {
-           Console.WriteLine("D");
-         }
-         else
-         {
-            Console.WriteLine("Fail");
-         }
+            Console.Write("Enter your guess: ");
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out userGuess))
+            {
+                attempts++;
 
+                if (userGuess < numberToGuess)
+                {
+                    Console.WriteLine("Too low! Try again.");
+                }
+                else if (userGuess > numberToGuess)
+                {
+                    Console.WriteLine("Too high! Try again.");
+                }
+                else
+                {
+                    Console.WriteLine($"Congratulations! You guessed the number in {attempts} attempts.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid number.");
+            }
+        }
     }
 }
